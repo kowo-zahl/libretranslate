@@ -20,7 +20,7 @@ module LibreTranslate
     def api_key
       @api_key ||= ""
     end
-
+    attr_writer :headers
     def headers
       @headers ||= ""
     end
