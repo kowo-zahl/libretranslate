@@ -22,14 +22,7 @@ module LibreTranslate
     end
     attr_writer :headers
     def headers
-      head = {}
-
-      helper =  @headers.split(",")
-      helper.each do |hl|
-        head[hl.split(":")[0]] = hl.split(":")[1]
-      end
-
-      @headers = head
+        @headers ||= ""
     end
   end
 
