@@ -4,8 +4,8 @@ module LibreTranslate
   class Api
     def self.get(path)
       uri = uri_from_path(path)
-      if LibreTranslate.headers.trim.length > 0
-        headers = LibreTranslate.headers.trim
+      if LibreTranslate.headers.length > 0
+        headers = LibreTranslate.headers
         body = Net::HTTP.get(uri, headers)
       else
         body = Net::HTTP.get(uri)
