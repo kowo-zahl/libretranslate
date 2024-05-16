@@ -4,8 +4,13 @@ module LibreTranslate
   class Api
     def self.get(path)
       uri = uri_from_path(path)
-      body = Net::HTTP.get(uri)
-      JSON.parse(body)
+      if LibreTranslate.headers.trim.length > 0
+        headers = LibreTranslate.headers.trim
+        body = Net::HTTP.get(uri, headers)
+      else
+        body = Net::HTTP.get(uri)
+      end
+        JSON.parse(body)
     end
 
     def self.post(path, params = {})

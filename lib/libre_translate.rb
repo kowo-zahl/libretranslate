@@ -20,6 +20,10 @@ module LibreTranslate
     def api_key
       @api_key ||= ""
     end
+
+    def headers
+      @headers ||= ""
+    end
   end
 
   def self.languages
