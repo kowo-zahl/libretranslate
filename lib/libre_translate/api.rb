@@ -14,12 +14,16 @@ module LibreTranslate
     end
 
     def self.post(path, params = {})
+      headers = LibreTranslate.headers
       uri = uri_from_path(path)
       params.merge!({ api_key: LibreTranslate.api_key })
 
       response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
         request = Net::HTTP::Post.new(uri)
         request["Content-Type"] = "application/json"
+        headers.each do |he|
+          request[he[0]] = he[1]
+        end
         request.body = params.to_json
         http.request(request)
       end
